@@ -1,0 +1,389 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Responsive Navigation Bar</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Shadows+Into+Light&display=swap");
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            line-height: 1.5em;
+        }
+
+        :root {
+            --body-bg: #fafcf5;
+            --font-family: "Open Sans", sans-serif;
+            --font-color:  rgba(88,133,175);
+            --prime-color: rgba(88,133,175);
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            overflow-wrap: break-word;
+            font-family: var(--font-family);
+            color: var(--font-color);
+            background-color: var(--body-bg);
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            all: unset;
+            cursor: pointer;
+        }
+
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .header {
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .header .wrap {
+            max-width: 1200px;
+            height: 80px;
+            padding: 0 20px;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            align-items: center;
+        }
+        .logo a {
+            font-size: 2rem;
+            font-weight: bold;
+            align-items: center;
+            font-family: "Shadows Into Light", cursive;
+        }
+        .logo a span {
+            color: var(--prime-color);
+        }
+        .logo a::before {
+            content: "";
+            margin-right: 7px;
+            width: 50px;
+            height: 50px;
+            background: url("./lemon.png") no-repeat center;
+            background-size: 50px;
+        }
+
+        .icon-bar {
+            display: none;
+        }
+
+        .navbar .close-nav {
+            display: none;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            align-items: center;
+        }
+
+        .navbar li {
+            padding: 0 0.6em;
+        }
+
+        .navbar a {
+            font-size: 1.125rem;
+            display: block;
+            padding: 0.3em;
+            font-weight: bold;
+        }
+        .navbar a:hover {
+            color: var(--prime-color);
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                font-size: 1rem;
+            }
+            .icon-bar {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                border: 1px solid var(--prime-color);
+                width: 50px;
+                height: 50px;
+                padding: 0 12px;
+                border-radius: 3px;
+            }
+            .icon-bar:hover {
+                background-color: #fffaf6;
+            }
+            .icon-bar span {
+                border-top: 2px solid var(--font-color);
+                width: 100%;
+            }
+            .icon-bar span::before,
+            .icon-bar span::after {
+                content: "";
+                border-bottom: 2px solid var(--font-color);
+                display: block;
+                height: 8px;
+            }
+            .overflow-none {
+                overflow: hidden;
+            }
+            .navbar {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                transition: 0.2s linear;
+                transform: scale(0);
+                top: 0;
+                left: 0;
+                background-color: #fafcf5;
+                z-index: 9;
+            }
+            .navbar .close-nav {
+                all: unset;
+                font-size: 2.5rem;
+                display: block;
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                cursor: pointer;
+            }
+            .navbar .close-nav:hover {
+                color: #999999;
+            }
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+            }
+            .navbar li {
+                padding: 0.7rem 0;
+            }
+            .navbar a {
+                font-size: 2rem;
+                text-transform: uppercase;
+            }
+            .navbar a:hover {
+                text-decoration: underline;
+            }
+            .nav-scale {
+                transform: scale(1) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="wrap flex">
+        <div class="logo flex"><a class="flex" href="/">Life<span>ON</span>Wheel</a></div>
+        <nav class="navbar">
+            <button class="close-nav">&#10006;</button>
+            <ul class="flex">
+                <li><a href="http://127.0.0.1:8000/">Home</a></li>
+                
+                
+                <li><a href="/term_2">Terms and Conditions</a></li>
+                <li><a href="/aboutus">About Us</a></li>
+                <li><a href="/contactus">Contact Us</a></li>
+                <li><a href="//127.0.0.1:8000/admin/">Staff Login</a></li>
+            </ul>
+        </nav>
+        <div class="icon-bar flex"><span></span></div>
+    </div>
+</header>
+
+<script>
+let openMenu = document.querySelector('.icon-bar');
+let closeMenu = document.querySelector('.close-nav');
+let navMenu = document.querySelector('.navbar');
+let bodyEl = document.querySelector('body');
+openMenu.addEventListener('click',function(){
+    navMenu.classList.add('nav-scale');
+    bodyEl.classList.add('overflow-none');
+});
+closeMenu.addEventListener('click',function(){
+    navMenu.classList.remove('nav-scale');
+    bodyEl.classList.remove('overflow-none');
+});
+</script>
+</body>
+</html>
+
+
+ 
+<style>
+  /* below code is for img writing */
+  /* .container {
+  position: relative;
+  text-align: center;
+  color: white;}
+  .top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  background-color:rgb(193, 110, 112);
+  color:rgb(	121,110,126);
+  padding-left: 20px;
+  padding-right: 20px;
+  * {
+  box-sizing: border-box;
+} */
+/* Add the blur effect */
+
+
+
+
+
+    /* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(193, 110, 112, 2);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  
+  .title {
+    color: rgb(193, 110, 112);
+    font-size: 18px;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: rgb(193, 110, 112);;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: rgb(193, 110, 112);
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+  .card1 {
+    box-shadow: 0 4px 8px 0 rgba(		121,110,126, 2);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  
+  .title1 {
+    color: rgb(	121,110,126);
+    font-size: 18px;
+  }
+  button1 {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: rgba(	121,110,126,10);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a1 {
+    text-decoration: none;
+    font-size: 22px;
+    color:rgba(121,110,126,10);
+  }
+  <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.container {
+  position: relative;
+  font-family: Arial;
+}
+
+.text-block {
+    position:absolute;
+   top: 65%;
+  left: 50%;
+  /* width: 20%;  */
+  /* margin-left: 100px; */
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color:rgb(193, 110, 112,0.7);
+  color: white;
+  font-size: 19px;
+  /* padding: 12px 24px; */
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  text-align: center;
+}
+.pic
+{
+   
+
+}
+</style>
+</head>
+<body>
+
+<!-- <h2>Image Text Blocks</h2>
+<p>How to place text blocks over an image:</p> -->
+
+<div class="container">
+    <div class="pic">
+  <img src="{% static 'app/images/term_1_pic.png' %}" alt="Nature" width="100%" >
+  <!-- <img src="img_girl.jpg" alt="Girl in a jacket" width="768" height="665"> -->
+</div>
+  <div class="text-block">
+    
+    <p>Welcome to our website. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern Sunny Hill Sanctuary's’s relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website. The term ‘Sunny Hill Sanctuary ’ or ‘us’ or ‘we’ refers to the owner of the website whose registered office is in Brock, NE. The term ‘you’ refers to the user or viewer of our website. The use of this website is subject to the following terms of use: • The content of the pages of this website is for your general information and use only. It is subject to change without notice. • This website uses cookies to monitor browsing preferences.  You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law. • This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions. • All trademarks reproduced in this website, which are not the property of, or licensed to the operator, are acknowledged on the website. • Unauthorized use of this website may give rise to a claim for damages and/or be a criminal offence. • From time to time, this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s). •
+
+
+
+
+    </p>
+  </div>
+</div>
+
+</body>
+</html> 

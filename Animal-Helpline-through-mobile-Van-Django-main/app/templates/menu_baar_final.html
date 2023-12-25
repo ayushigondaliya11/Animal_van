@@ -1,0 +1,789 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Responsive Navigation Bar</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Shadows+Into+Light&display=swap");
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            line-height: 1.5em;
+        }
+
+        :root {
+            --body-bg: #fafcf5;
+            --font-family: "Open Sans", sans-serif;
+            --font-color:  rgba(88,133,175);
+            --prime-color: rgba(88,133,175);
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            overflow-wrap: break-word;
+            font-family: var(--font-family);
+            color: var(--font-color);
+            background-color: var(--body-bg);
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            all: unset;
+            cursor: pointer;
+        }
+
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .header {
+            background-color: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .header .wrap {
+            max-width: 1200px;
+            height: 80px;
+            padding: 0 20px;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            align-items: center;
+        }
+        .logo a {
+            font-size: 4rem;
+            font-weight: bold;
+            align-items: center;
+            font-family: "Shadows Into Light", cursive;
+        }
+        .logo a span {
+            color: var(--prime-color);
+        }
+        .logo a::before {
+            content: "";
+            margin-right: 7px;
+            width: 50px;
+            height: 50px;
+            background: url("./lemon.png") no-repeat center;
+            background-size: 50px;
+        }
+
+        .icon-bar {
+            display: none;
+        }
+
+        .navbar .close-nav {
+            display: none;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            align-items: center;
+        }
+
+        .navbar li {
+            padding: 0 0.6em;
+        }
+
+        .navbar a {
+            font-size: 2rem;
+            display: block;
+            padding: 0.3em;
+            font-weight: bold;
+            
+        }
+        .navbar a:hover {
+            color: var(--prime-color);
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                font-size: 1rem;
+            }
+            .icon-bar {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                border: 1px solid var(--prime-color);
+                width: 50px;
+                height: 50px;
+                padding: 0 12px;
+                border-radius: 3px;
+            }
+            .icon-bar:hover {
+                background-color: #fffaf6;
+            }
+            .icon-bar span {
+                border-top: 2px solid var(--font-color);
+                width: 100%;
+            }
+            .icon-bar span::before,
+            .icon-bar span::after {
+                content: "";
+                border-bottom: 2px solid var(--font-color);
+                display: block;
+                height: 8px;
+            }
+            .overflow-none {
+                overflow: hidden;
+            }
+            .navbar {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                transition: 0.2s linear;
+                transform: scale(0);
+                top: 0;
+                left: 0;
+                background-color: #fafcf5;
+                z-index: 9;
+            }
+            .navbar .close-nav {
+                all: unset;
+                font-size: 5rem;
+                display: block;
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                cursor: pointer;
+            }
+            .navbar .close-nav:hover {
+                color: #999999;
+            }
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+            }
+            .navbar li {
+                padding: 0.7rem 0;
+            }
+            .navbar a {
+                font-size: 2rem;
+                text-transform: uppercase;
+            }
+            .navbar a:hover {
+                text-decoration: underline;
+            }
+            .nav-scale {
+                transform: scale(1) !important;
+            }
+        }
+        .column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(193, 110, 112, 2);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  
+  .title {
+    color: rgb(193, 110, 112);
+    font-size: 18px;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: rgb(193, 110, 112);;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: rgb(193, 110, 112);
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+  .card1 {
+    box-shadow: 0 4px 8px 0 rgba(		121,110,126, 2);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+  }
+  
+  .title1 {
+    color: rgb(	121,110,126);
+    font-size: 18px;
+  }
+  button1 {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: rgba(	121,110,126,10);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a1 {
+    text-decoration: none;
+    font-size: 22px;
+    color:rgba(121,110,126,10);
+  }
+  /* img_button css  */
+  .bg-image {
+        filter:blur(70%)
+      }
+    .container1 {
+      position: relative;
+      width: 100%;
+      max-width: 200.0rem;
+      margin-bottom: 2.0rem;
+    }
+    
+    .container1 img {
+      width: 50%;
+      height: auto;
+    }
+    
+    .container1 .btn {
+    border-radius: 5.0rem;
+      position: absolute;
+      top: 20%;
+      left: 15%;
+      width: 20%;
+      /* margin-left: 20.0rem; */
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color:rgb(193, 110, 112,0.7);
+      color: white;
+      font-size: 1.9rem;
+      padding: 1.2rem 2.4rem;
+      border: none;
+      cursor: pointer;
+      
+      text-align: center;
+    }
+    
+    .container1 .btn:hover {
+      background-color:  rgb(	121,110,126);
+    }
+    body {
+      font-family: Arial;
+      font-size: 1.7rem;
+    }
+
+        html{
+            font-size:10px; 
+        }
+     @media  (max-width:998px ){
+            html{
+                   font-size:55%
+                }
+            } 
+    @media  (max-width:768px){
+          html{
+               font-size:45%
+             }
+            
+            .content{
+                margin-top: 20rem;
+            }
+             .container1 .btn {
+                left:20%;
+                top:30%;
+                width:30%;
+             }
+            }  
+  /* card css  */
+  /* card 1 */
+  .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 300px;
+    border-radius: 50px;
+    
+  }
+  
+  .card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 50px;
+  }
+  
+  .card button {
+    background-color: rgb(193 110 112);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 50px;
+  }
+  
+  .card button:hover {
+    background-color: rgb(137, 128, 128);
+  }
+  /* card 2 */
+  .card1-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .card1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 300px;
+    border-radius: 50px;
+  }
+  
+  .card1 img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 50px;
+  }
+  
+  .card1 button {
+    background-color:rgb(121,110,126);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 50px;
+  }
+  
+  .card1 button:hover {
+    background-color:rgb(203, 196, 115);
+  }
+  /* card 3 */
+  .card2-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .card2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 300px;
+    border-radius: 50px;
+  }
+  
+  .card2 img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 50px;
+  }
+  
+  .card2 button {
+    background-color: rgba(88,133,175);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 50px;
+  }
+  
+  .card2 button:hover {
+    background-color:coral;
+  }
+  /* footer css */
+  
+* {
+   box-sizing: border-box;
+ }
+ html, body {
+   height: 100%;
+ }
+ body {
+   
+     font: 11px "Open Sans", sans-serif;
+     /* -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale; */
+     margin: auto;
+   display: flex;
+   flex-flow: column nowrap;
+   /* //This justify-content is essentially unnecessary in Firefox and Chrome due to the flex: 1 1 auto on the main.  However, it's needed to push the footer down on IE11 */
+    justify-content: space-between; 
+ }
+ ul {
+    list-style: none;
+ 
+ }
+ a {
+   text-decoration: none;
+<!--   color:  rgb(109, 9, 11);-->
+color:rgb(193 110 112);
+ }
+  /* .generic-anchor {
+     color: #8DB9ED;
+     &:visited {
+         color: #8DB9ED;
+     }
+     &:hover {
+         color: #ccc;
+     }
+ }  */
+ .flex-rw {
+   display: flex;
+   flex-flow: row wrap; 
+   
+   }
+  
+ /* //This main is mostly to push the footer to the bottom and for demo purposes. */
+ main {
+   flex: 1 1 auto; /*For IE11*/
+   display: flex; 
+   align-items: center;
+   justify-content: center;
+   font: 10em "Oswald", sans-serif;
+   color: rgb(155,155,155);
+   line-height: 1;
+ } 
+ 
+ footer {
+   background: linear-gradient(135deg, rgba(88,133,175), rgb(193 110 112)); 
+   margin-top: 100;
+   /* width: 100%; */
+ }
+ .footer-list-top {
+   width: 33.333%;
+ }
+ .footer-list-top > li{
+   text-align: center;
+   padding-bottom: 10px;
+ }
+ .footer-list-top  button{
+   background-color: rgb(193 110 112);
+   border-radius : 20% ;
+   margin-top:50px ;
+   cursor:arrow;
+   /* height-top:100px; */
+   width:auto;
+ } 
+ /* button */
+ /* .footer-list-top > button{
+     color: rgb(193 110 112);
+     border-radius: 5px;
+ } */
+ .footer-list-header {
+   padding: 10px 0 5px 0;
+   color: black;
+   font-weight: 200;
+   font: 2.3vw "Oswald", sans-serif
+ }
+ 
+ .footer-list-anchor {
+   font: 1.3em "Open Sans", sans-serif
+ }
+ .footer-social-section {
+   width: 100%;
+   align-items: center;
+   justify-content: space-around;
+   position: relative;
+   margin-top: 5px;
+ }
+ .footer-social-section::after {
+   content: "";
+   position: absolute;
+   z-index: 1;
+   top: 50%;
+   left: 10px;
+   border-top: 1px solid black;
+   width: calc(100% - 20px)
+ }
+ .footer-social-overlap {
+   position: relative;
+   z-index: 2;
+   background: rgb(193 110 112);
+   padding: 0 20px
+ }
+ .footer-social-connect {
+   display: flex;
+   align-items: center;
+   font: 3.5em "Oswald", sans-serif;
+   color: black;
+ }
+ .footer-social-small {
+   font-size: 0.6em;
+   padding: 0px 20px
+ }
+ .footer-social-overlap > a {
+   font-size: 3em
+ }
+ .footer-social-overlap > a1:not(:first-child) {
+   margin-left: 0.38em
+ }
+
+ @media only screen and (max-width: 768px) {
+   .footer-list-header {
+     font-size: 2em
+   }
+   .footer-list-anchor {
+     font-size: 1.1em
+   }
+   .footer-social-connect {
+     font-size: 2.5em
+   }
+   .footer-social-overlap > a {
+     font-size: 2.24em
+   }
+   /* .footer-bottom-wrapper {
+     font-size: 1.3em
+   } */
+ }
+ @media only screen and (max-width: 568px) {
+   main {
+     font-size: 5em
+   }
+   .footer-list-top {
+     width: 100%
+   }
+   .footer-list-header {
+     font-size:black;
+   }
+   .footer-list-anchor {
+     font-size: 1.5em;
+     color: white;
+   }
+   .footer-social-section {
+     justify-content: center;
+     top: 20%;
+   }
+   .footer-social-section::after {
+     top: 25%;
+   }
+
+   .footer-social-overlap {
+     display: flex;
+     justify-content: center;
+   }
+ 
+   .footer-bottom-section {
+     padding: 0 5px 10px 5px
+   }
+
+ }
+ @media only screen and (max-width: 480px) {
+   .footer-social-overlap > a {
+     margin: auto
+   }
+   .footer-social-overlap > a1:not(:first-child) {
+     margin-left: 0;
+   }
+   .footer-bottom-rights {
+     display: block
+   }
+ }
+ @media only screen and (max-width: 320px) {
+   .footer-list-header {
+     font-size: 2.2em
+   }
+   .footer-list-anchor {
+     font-size: 1.2em
+   }
+   .footer-social-connect {
+     font-size: 2.4em
+   }
+   .footer-social-overlap > a {
+     font-size: 2.24em
+   }
+
+ }
+    </style>
+</head>
+<body>
+    <!-- navbaar html -->
+<header class="header">
+    <div class="wrap flex">
+        <div class="logo flex"><a class="flex" href="/">Life<span>ON</span>Wheel</a></div>
+        <nav class="navbar">
+            <button class="close-nav">&#10006;</button>
+            <ul class="flex">
+                <li><a href="http://127.0.0.1:8000/">Home</a></li>
+                
+                
+                <li><a href="/term_2">Terms and Conditions</a></li>
+                <li><a href="/aboutus">About Us</a></li>
+                <li><a href="/contactus">Contact Us</a></li>
+                <li><a href="//127.0.0.1:8000/admin/">Staff Login</a></li>
+            </ul>
+        </nav>
+        <div class="icon-bar flex"><span></span></div>
+    </div>
+</header>
+
+<script>
+let openMenu = document.querySelector('.icon-bar');
+let closeMenu = document.querySelector('.close-nav');
+let navMenu = document.querySelector('.navbar');
+let bodyEl = document.querySelector('body');
+openMenu.addEventListener('click',function(){
+    navMenu.classList.add('nav-scale');
+    bodyEl.classList.add('overflow-none');
+});
+closeMenu.addEventListener('click',function(){
+    navMenu.classList.remove('nav-scale');
+    bodyEl.classList.remove('overflow-none');
+});
+</script>
+<!-- img_button html  -->
+<div class="bg-image">
+    <div class="container1">
+         <img src="{% static 'app/images/img_button.jpg' %}" alt="John" style="width:100%">
+         <button class="btn" onClick="location.href='/feedback'">For your valuable suggestions..click here!</button>
+    </div>
+</div>
+<!-- card html -->
+<div class="card-container">
+    <!-- <div class="card" style="background: linear-gradient(135deg, rgba(88,133,175), rgb(193 110 112));"> -->
+        <div class="card" >
+      <!-- <img src="footer_pic_3.png" alt="Image 1"> -->
+      <img src="{% static 'app/images/card1pic9.png' %}" alt="John" style="width:100%">
+      <h1 style="color:rgb(193 110 112);" >save animal</h1>
+      <p style="color:rgb(193 110 112);">tap for injured animal</p>
+      <p style="color:rgb(193 110 112);">we're ready to do help</p>
+
+      <button onClick="location.href='/injuredregistration'" type="button">contact us!</button>
+      
+    </div>
+   <!-- <div class="card1-container"> -->
+    <div class="card1"> 
+      <!-- <img src="footer_pic_3.png" alt="Image 2"> -->
+      <img src="{% static 'app/images/card2pic2.png' %}" alt="John" style="width:100%">
+      <h1 style="color:rgb(121,110,126);" >For A Death animal</h1>
+      <p style="color:rgb(121,110,126);">let it reach to destination</p>
+      <p style="color:rgb(121,110,126);">Death ends a life ,not a relationship</p>
+      <button onClick="location.href='/deadregistration'" type="button">contact us!</button>
+    </div>
+   
+    <div class="card2">
+      <!-- <img src="footer_pic_3.png" alt="Image 3"> -->
+      <img src="{% static 'app/images/card3pic1.png' %}" alt="John" style="width:100%">
+      <h1 style="color:rgba(88,133,175);" >NGO</h1>
+      <p style="color:rgba(88,133,175);">Do somthing for them</p>
+      <p style="color:rgba(88,133,175);">Care thay need,love thay deserve</p>
+      <button onClick="location.href='/ngoregistration'" type="button">contact us!</button>
+    </div></div>
+  </div>
+<!-- footer html  -->
+<footer class="flex-rw" >
+           
+    <ul class="footer-list-top">
+      <li>
+      <button><h4 class="footer-list-header btn1">Help & Support</h4></li></button>
+      <li><a href='feedback' class="generic-anchor footer-list-anchor" itemprop="significantLink" style="color:black;">GET HELP AND SUPPORT FROM OUR SIDE</a></li>
+   
+    </ul>
+    <ul class="footer-list-top">
+      <li>
+      <button><h4 class="footer-list-header">Contact</h4></li></button>
+      <li><a href="/contactus" class="generic-anchor footer-list-anchor" style="color:black;">CONTACT US</a></li>
+      <li><a href="/contactus" class="generic-anchor footer-list-anchor" style="color:black;">E-MAIL</a></li>
+
+    </ul>
+    <ul class="footer-list-top">
+      <li id='help'>
+      <button><h4 class="footer-list-header">Social Link</h4></li></button>
+      <li><a href="/contactus" class="generic-anchor footer-list-anchor" itemprop="significantLink" style="color:black;">FACEBOOK</a></li>
+      <li><a href='/contactus' class="generic-anchor footer-list-anchor" itemprop="significantLink" style="color:black;">TWITTER</a></li>
+      <li><a href='/contactus' class="generic-anchor footer-list-anchor" itemprop="significantLink" style="color:black;">INSTAGRAM</a></li>
+
+    </ul>
+    <br>
+    <br>
+    <section class="footer-social-section flex-rw">
+        <span class="footer-social-overlap footer-social-connect">
+        CONNECT <span class="footer-social-small">with</span> US
+        </span>
+        
+    
+    </section>
+ 
+  </footer>
+</body>
+</html>
+
+
+ 
+
+
+
+
+
+
+ 

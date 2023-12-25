@@ -1,0 +1,35 @@
+{%  load static %}
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body{
+                background-color:rgb(193 110 112);
+                height: 10%;
+            }
+            img{
+                width: 600px;
+                border-radius:50px;
+                /* height: 40%; */
+                align-items: center;
+                margin-top: 8%;
+            }
+            input{
+                height: 50px;
+                width: 120px;
+                border-radius: 50px;
+                color: rgb(193 110 112);
+            }
+            input:hover
+            {
+                transform: scale(0.99); 
+                box-shadow: 0 0 40px -10px rgb(121,110,126);
+            }
+        </style>
+        </head>
+    <body>
+        <center><img src="{% static 'app/images/Thank you.png' %}"></center>
+        <br>
+        <center><input type="button" onClick="location.href='http://127.0.0.1:8000/'" value="Home Page"></center>
+    </body>
+</html>
